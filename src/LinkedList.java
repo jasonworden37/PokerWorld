@@ -4,12 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class LinkedList {
-    private Node head;
-    private Node tail;
-    private Node dealer;
-    private Node small;
-    private Node big;
-    private Node turn;
+    private Node head, tail,dealer,small,big,turn,temp;
     private int size;
 
 
@@ -35,13 +30,17 @@ public class LinkedList {
             tail = n;
             head.next = tail;
             tail.next = head;
-            small = tail;
+            small = n;
             turn = small;
+            big = head;
+            temp = small;
         } else {
-            big = small.next;
+
             tail.next = n;
             n.next = head;
             tail = n;
+            big = small.next;
+            turn = big.next;
         }
 
         size++;
@@ -54,7 +53,7 @@ public class LinkedList {
         while (!curr.player.getName().equals(name)) {
             curr = curr.next;
             if (curr == head) {
-                System.out.println("Couldn't Find Player");
+                System.out.println("Couldn't Find Player in LinkedList(1)");
                 return;
             }
         }
@@ -97,7 +96,8 @@ public class LinkedList {
         dealer = dealer.next;
         small = small.next;
         big = big.next;
-       turn = small;
+       turn = big.next;
+       temp = small;
         Node n = head;
 
         while (n.next != head) {
@@ -126,10 +126,10 @@ public class LinkedList {
         BufferedImage image;
         try {
             image = ImageIO.read(new File("C:\\Users\\jason\\Pictures\\PNG\\yellow_back.png"));
-            n.player.setRight(image);
-            n.player.setLeft(image);
+            n.player.setRight(image,"blank");
+            n.player.setLeft(image,"blank");
         } catch (IOException ex) {
-            System.out.println("Oopsyyyyy");
+            System.out.println("Image Load Exception in LinkedList(1)");
         }
         n.player.setInHand(false);
     }
@@ -175,13 +175,13 @@ public class LinkedList {
         try {
             image = ImageIO.read(new File("C:\\Users\\jason\\Pictures\\PNG\\" + card + ".png"));
             if (num < size ) {
-                turn.player.setLeft(image);
+                temp.player.setLeft(image,card);
             } else  {
-                turn.player.setRight(image);
+                temp.player.setRight(image,card);
             }
-            turn = turn.next;
+            temp = temp.next;
         } catch (IOException ex) {
-            System.out.println("Oopsyyyyy");
+            System.out.println("Image Load Exception in LinkedList(2)");
         }
 
     }
@@ -195,15 +195,15 @@ public class LinkedList {
             chips = null;
             while (n.next != head) {
                 n.player.setChips(chips);
-                n.player.setRight(image);
-                n.player.setLeft(image);
+                n.player.setRight(image,"blank");
+                n.player.setLeft(image,"blank");
                 n = n.next;
             }
             n.player.setChips(chips);
-            n.player.setRight(image);
-            n.player.setLeft(image);
+            n.player.setRight(image,"blank");
+            n.player.setLeft(image,"blank");
         } catch (IOException ex) {
-            System.out.println("well");
+            System.out.println("Image Load Exception in LinkedList(3)");
         }
 
 
@@ -257,6 +257,9 @@ public class LinkedList {
 
     public Node getTurn() {
         return turn;
+    }
+    public void AutoTurn(){
+        turn = small;
     }
 
     public void setTurn(Node turn) {

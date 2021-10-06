@@ -3,11 +3,7 @@ import java.awt.*;
 
 public class pot extends JPanel {
     private Color n = new Color(36, 55, 77);
-    private JLabel pot1;
-    private JLabel pot2;
-    private JLabel pot3;
-    private JLabel curr;
-    private JLabel turn;
+    private JLabel pot1, pot2, pot3, curr,turn;
     public pot() {
         super(new GridLayout(4, 1));
          pot1 = new JLabel("Pot: ");

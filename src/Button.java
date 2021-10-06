@@ -29,7 +29,7 @@ public class Button extends JPanel {
     private Color orange = new Color(255, 191, 128);
 
     public Button() {
-        super(new GridLayout(2,6));
+        super(new GridLayout(2,5));
 
 
         tf = new JButton();
@@ -82,18 +82,12 @@ public class Button extends JPanel {
         fold.setFont(new Font("Arial", Font.ITALIC, 96));
 
         bet = new JButton();
-        bet.setText("Bet");
+        bet.setText("Raise");
         bet.setBackground(n);
         bet.setForeground(Color.white);
         bet.setPreferredSize(new Dimension(600,400));
         bet.setFont(new Font("Arial", Font.ITALIC, 96));
 
-        newHand = new JButton();
-        newHand.setText("New Hand");
-        newHand.setBackground(n);
-        newHand.setForeground(Color.white);
-        newHand.setPreferredSize(new Dimension(600,400));
-        newHand.setFont(new Font("Arial", Font.ITALIC, 96));
 
         check = new JButton();
         check.setText("Check");
@@ -109,18 +103,9 @@ public class Button extends JPanel {
         call.setPreferredSize(new Dimension(600,400));
         call.setFont(new Font("Arial", Font.ITALIC, 96));
 
-        remove = new JButton();
-        remove.setText("Remove");
-        remove.setBackground(n);
-        remove.setForeground(Color.white);
-        remove.setPreferredSize(new Dimension(600,400));
-        remove.setFont(new Font("Arial", Font.ITALIC, 96));
 
 
 
-
-
-        this.add(clear);
         this.add(tf);
         this.add(hun);
         this.add(fhun);
@@ -131,9 +116,36 @@ public class Button extends JPanel {
         this.add(fold);
         this.add(bet);
         this.add(call);
-        this.add(remove);
-        this.add(newHand);
+        this.add(clear);
 
+
+
+    }
+
+
+    public void greayCheckButton() {
+        check.setEnabled(false);
+    }
+
+    public void grayCallButton() {
+        call.setEnabled(false);
+    }
+
+    public void unGrayCallButton() {
+        call.setEnabled(true);
+    }
+    public void Ungray() {
+        check.setEnabled(true);
+        bet.setEnabled(true);
+        call.setEnabled(true);
+        fold.setEnabled(true);
+
+    }
+    public void gray(){
+        check.setEnabled(false);
+        bet.setEnabled(false);
+        call.setEnabled(false);
+        fold.setEnabled(false);
 
     }
 
@@ -151,10 +163,6 @@ public class Button extends JPanel {
 
     public JButton getCall() {
         return call;
-    }
-
-    public JButton getNewHand() {
-        return newHand;
     }
 
     public JButton getTf() {
@@ -181,7 +189,5 @@ public class Button extends JPanel {
         return clear;
     }
 
-    public JButton getRemove() {
-        return remove;
-    }
+
 }

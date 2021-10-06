@@ -13,6 +13,9 @@ public class FrameTable extends JFrame {
         setVisible(true);
     }
 
+    public LinkedList getPlay(){
+        return table.players;
+    }
     public Table getTable() {
         return table;
     }
